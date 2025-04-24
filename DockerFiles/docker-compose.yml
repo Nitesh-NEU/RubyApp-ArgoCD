@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: open-flights-db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: open-flights
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: open-flights_development
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: "pg_isready -h db"
+      timeout: 45s
+      interval: 10s
+      retries: 10
+  web:
+    image: niteshmore22/rails-app:0.3
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: open-flights
+      DATABASE_PASSWORD: password
+      RAILS_ENV: development
+    tty: true
+    stdin_open: true
+
+volumes:
+  postgres-data:
