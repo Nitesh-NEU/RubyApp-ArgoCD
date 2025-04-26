@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/Nitesh-NEU/makerble.git'
-    targetRevision: HEAD
+    targetRevision: main
     path: K8s/manifests/ruby-app
     directory:
       include: "output.yaml"
