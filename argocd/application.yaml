@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Nitesh-NEU/makerble.git'
+    repoURL: 'https://github.com/Nitesh-NEU/RubyApp-ArgoCD.git'
     targetRevision: main
     path: K8s/manifests/ruby-app
     directory:
