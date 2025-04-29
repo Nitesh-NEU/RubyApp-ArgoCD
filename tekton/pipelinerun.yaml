@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: open-flights-run-
+spec:
+  pipelineRef:
+    name: open-flights-pipeline
+  workspaces:
+    - name: shared-workspace
+      persistentVolumeClaim:
+        claimName: tekton-workspace-pvc-new
+    - name: docker-credentials
+      secret:
+        secretName: docker-credentials
+  params:
+    - name: git-url
+      value: "https://github.com/Nitesh-NEU/open-flights"
+    - name: image-name
+      value: "niteshmore22/rails-app:latest"   
+      
